@@ -2,12 +2,13 @@ from django.db import models
 
 class Boardgamer(models.Model):
     """Defines a Forum user"""
+    username = models.CharField(max_length=50)
     biography = models.CharField(max_length=300)
     date_joined = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         """Returns a string that describes the user"""
-        return self.biography
+        return self.username
 
 
 class Game(models.Model):
@@ -19,11 +20,5 @@ class Game(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        message = f"{self.name} by {self.owner}\n Added: {self.date_added} \n"
-        if self.availability:
-            message += "Currently available"
-        else:
-            message += "NOT available"
-        
-        return message
+        return self.name
             
