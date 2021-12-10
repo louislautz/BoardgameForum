@@ -14,6 +14,7 @@ class Boardgamer(models.Model):
 class Game(models.Model):
     """Defines a Game object"""
     name = models.CharField(max_length=80)
+    description = models.CharField(max_length=500)
     owner = models.ForeignKey(Boardgamer, on_delete=models.CASCADE)
     availability = models.BooleanField()
     date_added = models.DateTimeField(auto_now_add=True)
