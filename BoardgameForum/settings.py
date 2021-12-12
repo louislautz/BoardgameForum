@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #My apps
     'main',
-    #'users',
+    'users',
 
     #default Django apps
     'django.contrib.admin',
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+AUTH_USER_MODEL = 'main.Boardgamer' #Changes built in user model to custom one 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
