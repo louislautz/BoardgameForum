@@ -69,4 +69,7 @@ class Game(models.Model):
 
     def __str__(self):
         return self.name
+
+    def is_available(self):
+        return self.availability
             

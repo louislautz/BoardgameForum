@@ -1,1 +1,20 @@
-<p>This is the game page</p>
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    <p>Game: {{ game }}</p>
+    <p>Belongs to: {{ game.owner }}</p>
+
+    {% if game.is_available %}
+        <p>The game is available!</p>
+    {% else %}
+        <p>The game is currently not available!</p>
+    {% endif%}
+
+    <p>How does the game work:</p>
+    <p>{{ game.description }}</p>
+
+    <p>Added: {{ game.date_added }}</p>
+    <p>Last modified: {{ game.date_modified }}</p>
+
+{% endblock content %}
