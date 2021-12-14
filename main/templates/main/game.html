@@ -3,7 +3,9 @@
 {% block content %}
 
     <p>Game: {{ game }}</p>
-    <p>Belongs to: {{ game.owner }}</p>
+    <p>Belongs to:  
+        <a href="{% url 'users:profile' game.owner.id %}">{{ game.owner }}</a>
+    </p>
 
     {% if game.is_available %}
         <p>The game is available!</p>

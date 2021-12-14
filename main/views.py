@@ -1,8 +1,11 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 
-from .models import Boardgamer, Game
-from .forms import BoardgamerForm, GameForm
+from .models import Game
+from .forms import GameForm
+
+User = get_user_model()
 
 def index(request):
     """Home page for the BoardgameForum."""
@@ -23,9 +26,9 @@ def game(request, game_id):
     return render(request, 'main/game.html', context)
 
 @login_required
-def new_game(request, boardgamer_id):
+def new_game(request, User_id):
     """Adds a new game"""
-    boardgamer = Boardgamer.objects.get(id = boardgamer_id)
+    user = User.objects.get(id = User_id)
 
     if request.method != 'POST':
         # No data submitted. Create a blank form.
@@ -35,40 +38,10 @@ def new_game(request, boardgamer_id):
         form = GameForm(data=request.POST)
         if form.is_valid():
             new_game = form.save(commit=False)
-            new_game.owner = boardgamer
+            new_game.owner = user
             new_game.save()
-            return redirect('main:boardgamer', boardgamer_id=boardgamer_id)
+            return redirect('users:profile', User_id=User_id)
         
     # Display a blank or invalid form
-    context = {'boardgamer': boardgamer, 'form': form}
+    context = {'user': user, 'form': form}
     return render(request, 'main/new_game.html', context)
-
-
-def boardgamers(request):
-    """Shows all boardgamers"""
-    boardgamers = Boardgamer.objects.order_by('date_joined')
-    context = {'boardgamers': boardgamers}
-    return render(request, 'main/boardgamers.html', context)
-
-def boardgamer(request, boardgamer_id):
-    """Shows a specific boardgamer"""
-    boardgamer = Boardgamer.objects.get(id = boardgamer_id)
-    games = boardgamer.game_set.order_by('-date_added')
-    context = {'boardgamer': boardgamer, 'games': games}
-    return render(request, 'main/boardgamer.html', context)
-
-def new_boardgamer(request):
-    """Adds a new boardgamer"""
-    if request.method != 'POST':
-        # No data was submitted. Create a blank form
-        form = BoardgamerForm()
-    else:
-        # POST data submitted; process data
-        form = BoardgamerForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('main:boardgamers')
-
-    # Displays a blank or invalid form
-    context = {'form': form}
-    return render(request, 'main/new_boardgamer.html', context)

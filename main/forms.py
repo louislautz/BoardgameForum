@@ -1,12 +1,7 @@
 from django import forms
 
-from .models import Boardgamer, Game
+from .models import Game
 
-class BoardgamerForm(forms.ModelForm):
-    class Meta:
-        model = Boardgamer
-        fields = ['username', 'biography']
-        labels = {'username': 'Username: ', 'biography': 'Description: '}
 
 class GameForm(forms.ModelForm):
     class Meta:

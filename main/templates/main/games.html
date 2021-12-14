@@ -2,14 +2,16 @@
 
 {% block content %}
 
-  <p>Games</p>
-  <ul>
-    {% for game in games %}
-      <li>{{ game }}</li>
-    {% empty %}
-      <li>No games have been added yet :(</li>
-    {% endfor %}
-  </ul>
+    <p>Games</p>
+    <ul>
+        {% for game in games %}
+            <li>{{ game }}</li>
+            by <a href="{% url 'users:profile' game.owner.id %}">{{ game.owner }}</a>
+            
+        {% empty %}
+            <li>No games have been added yet :(</li>
+        {% endfor %}
+    </ul>
 
   
 

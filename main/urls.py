@@ -15,11 +15,4 @@ urlpatterns = [
     path('games/<int:game_id>', views.game, name='game'), 
     # Page that adds a new game to the database
     path('new_game/', views.new_game, name='new_game'),
-
-    # Page that shows all boardgamers
-    path('boardgamers/', views.boardgamers, name='boardgamers'),
-    # Page that shows a specific game
-    path('boardgamers/<int:boardgamer_id>', views.boardgamer, name='boardgamer'),
-    # Page that adds a new boardgamer to the database
-    path('new_boardgamer/', views.new_boardgamer, name='new_boardgamer'),
 ]
