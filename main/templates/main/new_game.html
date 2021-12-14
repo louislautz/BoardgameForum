@@ -1,1 +1,14 @@
-<p>This is the new_game page</p>
+{% extends "main/base.html" %}
+
+{% block content %}
+    <p><a href="{% url 'main:boardgamer' boardgamer.id %}">{{ boardgamer }}</a></p>
+
+    <p>Add a new game:</p>
+
+    <form action="{% url 'main:new_game' boardgamer.id%}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Add game</button>
+    </form>
+
+{% endblock content %}
