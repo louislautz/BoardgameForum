@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+
+from .forms import RegisterForm
 
 User = get_user_model()
 
@@ -9,10 +10,10 @@ def register(request):
     """Register a new user."""
     if request.method != 'POST':
         # Display blank registration form.
-        form = UserCreationForm()
+        form = RegisterForm()
     else:
         # Process completed form.
-        form = UserCreationForm(data=request.POST)
+        form = RegisterForm(data=request.POST)
 
         if form.is_valid():
             new_user = form.save()
