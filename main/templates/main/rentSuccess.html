@@ -1,4 +1,13 @@
 {% extends "main/base.html" %}
 {% block content %}
-    <p>You successfully rented out {{ game.name }}</p>
+<br><br>
+    <H4 class="text-center text-primary">You successfully rented out {{ game.name }}</H4>
+
+<br>
+<div class="col text-center">
+<button type="button" class="btn btn-dark"><a href="{% url 'main:games' %}">Return</a></button>
+
+    </div>
+
+
 {% endblock content %}

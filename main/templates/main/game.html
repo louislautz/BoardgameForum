@@ -3,22 +3,27 @@
 {% block content %}
 
 <p class="text-white">
-<p class = "text-white">Game: <a class="text-primary">{{ game }}</a></p>
-    <p class = "text-white">Belongs to:
+<p class = "text-white text-center">Game: <a class="text-primary">{{ game }}</a></p>
+    <p class = "text-white text-center">Belongs to:
         <a href="{% url 'users:profile' game.owner.id %}">{{ game.owner }}</a>
     </p>
 
     {% if game.is_available %}
-        <p class = "text-white">The game is available!</p>
+        <p class = "text-white text-center">The game is available!</p>
         {% if request.user != game.owner %}
-            <a href="{% url 'main:rentGame' game.id request.user.id %}">Rent now!</a>
+<div class="col text-center">
+<button type="button" class="btn btn-dark"><a href="{% url 'main:rentGame' game.id request.user.id %}">Rent now!</a></button>
+
+    </div>
+
+          </p>
         {% endif%}
     {% else %}
-        <p class = "text-white">The game is currently not available!</p>
+        <p class = "text-white text-center">The game is currently not available!</p>
     {% endif%}
-<br><br>
-    <p class = "text-white">How does the game work:</p>
-    <p class = "text-white">{{ game.description }}</p>
+<br>
+    <H5 class = "text-white text-center">How does the game work:</H5>
+    <p class = "text-white text-center">{{ game.description }}</p>
 <br>
     <p class = "text-white text-center">Added: {{ game.date_added }}</p>
     <p class = "text-white text-center">Last modified: {{ game.date_modified }}</p>
