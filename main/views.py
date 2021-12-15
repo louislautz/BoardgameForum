@@ -75,5 +75,4 @@ def returnGame(request, rent_id):
     game.availability = True
     game.save()
 
-
-    return render(request, 'main/index.html')
+    return redirect('users:profile', user_id=rent.renter.id)
