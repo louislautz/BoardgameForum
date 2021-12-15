@@ -1,14 +1,23 @@
 {% extends "main/base.html" %}
 
 {% block content %}
-    <p><a href="{% url 'users:profile' user.id %}">{{ user }}</a></p>
+<br><br>
 
-    <p>Add a new game:</p>
+    <H4 class="text-white ">Add a new game:</H4>
     
-    <form action="{% url 'main:new_game' user.id%}" method='post'>
+    <form action="{% url 'main:new_game' user.id%}" method='post' class="text-white">
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="submit">Add game</button>
+        <button name="submit">Submit</button>
     </form>
+
+    <div>
+    <H4 class="text-center text-capitalize"><a href="{% url 'users:profile' user.id %}" class= "text-primary">{{ user }}'s book page</a></H4>>
+</div>
+
+
+
+
+
 
 {% endblock content %}

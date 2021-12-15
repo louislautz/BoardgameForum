@@ -1,24 +1,24 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-
-    <p>Boardgamer: {{ user }}</p>
-
-    <p>Games:</p>
-    
-    <ul>
+    <br>
+    <h1 class="text-white text-capitalize text-center">{{ user }}'s Games:</h1>
+    <br><br>
+    <div class="d-flex">
+    <ul class="list-inline mx-auto justify-content-center">
     {% for game in games %} 
-        <li>
+        <li class="list-inline-item text-white">
             <a href="{% url 'main:game' game.id %}">{{ game.name }}</a>
             <p>{{ game.description|linebreaks }}</p>
         </li>
     {% empty %}
-        <li>You dont have any games yet.</li>
+        <li class="list-inline-item text-white">You dont have any games yet.</li>
     {% endfor %}
     </ul>
     {% if user == request.user %}
-    <p>
-        <a href="{% url 'main:new_game' user.id%}">Add new game</a>
-    </p>
-    {% endif %}
+    </div>
+
+    <a href="{% url 'main:new_game' user.id%}"><p class="text-center">Add new game</p></a>
+
+{% endif %}
 {% endblock content %}

@@ -1,18 +1,23 @@
 {% extends "main/base.html" %}
 
 {% block content %}
+<br>
+<p class ="text-white text-center">Games</p>
 
-    <p>Games</p>
-    <ul>
+<div class="d-flex">
+
+    <ul class="list-inline mx-auto justify-content-center">
         {% for game in games %}
-            <li>{{ game }}</li>
-            by <a href="{% url 'users:profile' game.owner.id %}">{{ game.owner }}</a>
+            <li class="list-inline-item text-white">{{ game }}</li>
+            <a class="text-white "><br>by</a>
+            <a href="{% url 'users:profile' game.owner.id %}" class = "text-primary">{{ game.owner }}</a>
+            <br><br>
             
         {% empty %}
             <li>No games have been added yet :(</li>
         {% endfor %}
     </ul>
+    </div>
 
-  
 
 {% endblock content %}

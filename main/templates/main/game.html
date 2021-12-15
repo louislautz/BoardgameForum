@@ -2,21 +2,22 @@
 
 {% block content %}
 
-    <p>Game: {{ game }}</p>
-    <p>Belongs to:  
+<p class="text-white">
+<p class = "text-white">Game: <a class="text-primary">{{ game }}</a></p>
+    <p class = "text-white">Belongs to:
         <a href="{% url 'users:profile' game.owner.id %}">{{ game.owner }}</a>
     </p>
 
     {% if game.is_available %}
-        <p>The game is available!</p>
+        <p class = "text-white">The game is available!</p>
     {% else %}
-        <p>The game is currently not available!</p>
+        <p class = "text-white">The game is currently not available!</p>
     {% endif%}
-
-    <p>How does the game work:</p>
-    <p>{{ game.description }}</p>
-
-    <p>Added: {{ game.date_added }}</p>
-    <p>Last modified: {{ game.date_modified }}</p>
+<br><br>
+    <p class = "text-white">How does the game work:</p>
+    <p class = "text-white">{{ game.description }}</p>
+<br>
+    <p class = "text-white text-center">Added: {{ game.date_added }}</p>
+    <p class = "text-white text-center">Last modified: {{ game.date_modified }}</p>
 
 {% endblock content %}

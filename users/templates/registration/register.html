@@ -1,9 +1,9 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<br></br><br></br><br></br>
 
-<div class="font-weight-bolder text-white text-left">
+
+<div class="login-form">
     <form method="post" action="{% url 'users:register' %}">
         {% csrf_token %}
         {{ form.as_p }}
@@ -12,4 +12,6 @@
         <input type="hidden" name="next" value="{% url 'main:index' %}" />
     </form>
 </div>
+
+
 {% endblock content %}
