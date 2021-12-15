@@ -26,9 +26,9 @@ def game(request, game_id):
     return render(request, 'main/game.html', context)
 
 @login_required
-def new_game(request, User_id):
+def new_game(request, user_id):
     """Adds a new game"""
-    user = User.objects.get(id = User_id)
+    user = User.objects.get(id = user_id)
 
     if request.method != 'POST':
         # No data submitted. Create a blank form.
@@ -40,7 +40,7 @@ def new_game(request, User_id):
             new_game = form.save(commit=False)
             new_game.owner = user
             new_game.save()
-            return redirect('users:profile', User_id=User_id)
+            return redirect('users:profile', user_id=user_id)
         
     # Display a blank or invalid form
     context = {'user': user, 'form': form}

@@ -14,5 +14,5 @@ urlpatterns = [
     # Page that shows a specific game
     path('games/<int:game_id>', views.game, name='game'), 
     # Page that adds a new game to the database
-    path('new_game/', views.new_game, name='new_game'),
+    path('new_game/<int:user_id>/', views.new_game, name='new_game'),
 ]
