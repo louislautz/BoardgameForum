@@ -4,19 +4,19 @@
     <br>
     <h1 class="text-white text-capitalize text-center">{{ user }}'s Games:</h1>
     <br><br>
-    <div class="d-flex">
-    <ul class="list-inline mx-auto justify-content-center">
+
+    <ul class="mx-auto content-center">
     {% for game in games %} 
-        <li class="list-inline-item text-white">
+        <li class="list-item text-white">
             <a href="{% url 'main:game' game.id %}">{{ game.name }}</a>
-            <p>{{ game.description|linebreaks }}</p>
+            <p>{{ game.description|linebreaks }}<br></p>
         </li>
     {% empty %}
-        <li class="list-inline-item text-white">You dont have any games yet.</li>
+        <li class="list-inline-item text-white">You don't have any games yet.</li>
     {% endfor %}
     </ul>
     {% if user == request.user %}
-    </div>
+
 
     <a href="{% url 'main:new_game' user.id%}"><p class="text-center">Add new game</p></a>
 
