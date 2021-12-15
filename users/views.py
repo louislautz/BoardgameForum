@@ -30,5 +30,6 @@ def profile(request, user_id):
     """Shows a specific user"""
     user = User.objects.get(id = user_id)
     games = user.game_set.order_by('-date_added')
-    context = {'user': user, 'games': games}
+    rentedGames = user.rent_set.order_by('-rent_time')
+    context = {'user': user, 'games': games, 'rentedGames': rentedGames}
     return render(request, 'registration/profile.html', context)

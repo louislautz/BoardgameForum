@@ -8,7 +8,9 @@
 
     <ul class="list-inline mx-auto justify-content-center">
         {% for game in games %}
-            <li class="list-inline-item text-white">{{ game }}</li>
+            <li class="list-inline-item text-white">
+                <a href="{% url 'main:game' game.id %}">{{ game }}</a>
+            </li>
             <a class="text-white "><br>by</a>
             <a href="{% url 'users:profile' game.owner.id %}" class = "text-primary">{{ game.owner }}</a>
             <br><br>

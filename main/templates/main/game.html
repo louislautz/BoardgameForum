@@ -10,6 +10,9 @@
 
     {% if game.is_available %}
         <p class = "text-white">The game is available!</p>
+        {% if request.user != game.owner %}
+            <a href="{% url 'main:rentGame' game.id request.user.id %}">Rent now!</a>
+        {% endif%}
     {% else %}
         <p class = "text-white">The game is currently not available!</p>
     {% endif%}
