@@ -7,7 +7,7 @@ User = get_user_model()
 class RegisterForm(forms.ModelForm):
     """"""
     username = forms.CharField()
-    biography = forms.CharField()
+    biography = forms.CharField(widget=forms.Textarea(attrs={'cols': 50}))
     password = forms.CharField(widget=forms.PasswordInput)
     password_2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
 

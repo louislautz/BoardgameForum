@@ -17,8 +17,26 @@
     {% endfor %}
     </ul>
     {% if user == request.user %}
-    <p>
-        <a href="{% url 'main:new_game' user.id%}">Add new game</a>
-    </p>
+        <p>
+            <a href="{% url 'main:new_game' user.id%}">Add new game</a>
+        </p>
+        <p>Rented Games:</p>
+        <ul>
+        {% for rent in rentedGames %}
+            {% if not rent.returned %}
+                <li>
+                    <a href="{% url 'main:game' rent.game.id %}">{{ rent.game.name }}</a>
+                    <p>by 
+                        <a href="{% url 'users:profile' rent.game.owner.id %}">{{ rent.game.owner }}</a>
+                        <a href="{% url 'main:returnGame' rent.id %}">Return Game</a>
+                    </p>
+                </li>
+            {% endif %}
+        {% empty %}
+            <li>You didnt rent any games yet.</li>
+        {% endfor %}
+        </ul>
+
+
     {% endif %}
 {% endblock content %}

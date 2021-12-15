@@ -5,7 +5,9 @@
     <p>Games</p>
     <ul>
         {% for game in games %}
-            <li>{{ game }}</li>
+            <li>
+                <a href="{% url 'main:game' game.id %}">{{ game }}</a>
+            </li>
             by <a href="{% url 'users:profile' game.owner.id %}">{{ game.owner }}</a>
             
         {% empty %}
