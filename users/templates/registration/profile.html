@@ -2,12 +2,9 @@
 
 {% block content %}
 
-    <p>Boardgamer: {{ boardgamer }}</p>
+    <p>Boardgamer: {{ user }}</p>
 
     <p>Games:</p>
-    <p>
-        <a href="{% url 'main:new_game'%}">Add new game</a>
-    </p>
     
     <ul>
     {% for game in games %} 
@@ -19,5 +16,9 @@
         <li>You dont have any games yet.</li>
     {% endfor %}
     </ul>
-
+    {% if user == request.user %}
+    <p>
+        <a href="{% url 'main:new_game' user.id%}">Add new game</a>
+    </p>
+    {% endif %}
 {% endblock content %}

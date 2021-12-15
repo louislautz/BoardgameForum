@@ -58,9 +58,10 @@ html body {
       <a href="{% url 'main:games' %}">Games</a> - 
     </li>
     <li class="nav-item">
-       {% if user.is_authenticated %}
-        Hello, {{ user.username }}. -
-        <a href="{% url 'users:logout' %}">Log out</a>
+    {% if user.is_authenticated %}
+        Hello, {{ request.user.username }}. - 
+        <a href="{% url 'users:logout' %}">Log out</a> - 
+        <a href="{% url 'users:profile' request.user.id%}">My Profile</a>
     {% else %}
         <a href="{% url 'users:register' %}">Register</a> -
         <a href="{% url 'users:login' %}">Log in</a>
@@ -70,7 +71,3 @@ html body {
 
 </nav>
 {% block content %}{% endblock content %}
-
-
-
-

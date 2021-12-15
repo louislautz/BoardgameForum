@@ -1,6 +1,16 @@
 # BoardgameForum
 
-### Todo:
-- [ ] Design HTML pages
-- [ ] Add form pages to add games and boardgamers
-- [ ] Add user accounts
+user test data:
+
+admin
+admin
+
+EpicBoardGamer69
+password
+
+testUser
+JustForTesting
+
+# not added yet
+Boardgamus_Rexus
+rexGaming

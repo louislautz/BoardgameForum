@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-AUTH_USER_MODEL = 'main.Boardgamer' #Changes built in user model to custom one 
+AUTH_USER_MODEL = 'users.User' #Changes built in user model to custom one 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
