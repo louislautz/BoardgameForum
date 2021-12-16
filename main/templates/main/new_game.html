@@ -2,7 +2,7 @@
 
 {% block content %}
 <br><br>
-
+    <div class="text-center">
     <H4 class="text-white ">Add a new game:</H4>
     
     <form action="{% url 'main:new_game' user.id%}" method='post' class="text-white">
@@ -11,13 +11,10 @@
         <button name="submit">Submit</button>
     </form>
 
-    <div>
-    <H4 class="text-center text-capitalize"><a href="{% url 'users:profile' user.id %}" class= "text-primary">{{ user }}'s book page</a></H4>>
-</div>
-
-
-
-
-
+        <div>
+            <br>
+            <H5 class="text-center text-capitalize"><a href="{% url 'users:profile' user.id %}" class= "text-primary">{{ user }}'s game page</a></H4>>
+        </div>
+    </div>
 
 {% endblock content %}

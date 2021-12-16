@@ -10,4 +10,4 @@ class GameForm(forms.ModelForm):
         labels = {  'name': 'Game name: ', 
                     'availability': 'Currently available? ',
                     'description': 'Description: '}
-        widgets = {'description': forms.Textarea(attrs={'cols': 80})}
+        widgets = {'description': forms.Textarea(attrs={'cols': 50})}

@@ -5,15 +5,15 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 User = get_user_model()
 
 class RegisterForm(forms.ModelForm):
-    """"""
+    """On-site register form"""
     username = forms.CharField()
-    biography = forms.CharField(widget=forms.Textarea(attrs={'cols': 50}))
+    biography = forms.CharField(widget=forms.Textarea(attrs={'cols': 45}))
     password = forms.CharField(widget=forms.PasswordInput)
     password_2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['username']
+        fields = ['username', 'biography', 'password', 'password_2']
 
     def clean_username(self):
         """Checks whether username is already taken"""
@@ -31,6 +31,15 @@ class RegisterForm(forms.ModelForm):
         if password is not None and password != password_2:
             self.add_error("password_2", "Your passwords must match")
         return cleaned_data
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"]) #set_password function saves the passwords as hashes to the database
+        if commit:
+            user.save()
+        return user
+
     
 class UserAdminCreationForm(forms.ModelForm):
     """A form for creating new users in the admin section"""
