@@ -22,39 +22,33 @@
 
 
 <div class="text-center">
-<button onclick="window.location.href='{% url 'main:new_game' user.id%}'" type="button" class="btn btn-dark"><a>Add new game</a></button>
+    <button onclick="window.location.href='{% url 'main:new_game' user.id%}'" type="button" class="btn btn-dark"><a>Add new game</a></button>
 </div>
-    {% if user == request.user %}
-
-
-
-
-
+{% if user == request.user %}
 <br><br>
-
 
 <p class="text-white text-center">Rented Games:</p>
 <div class="text-center">
-        <ul class="list-inline mx-auto justify-content-center">
-        {% for rent in rentedGames %}
-            {% if not rent.returned %}
-                <li class="text-white">
-                    <a href="{% url 'main:game' rent.game.id %}">{{ rent.game.name }}</a>
-                    <p>by 
-                        <a href="{% url 'users:profile' rent.game.owner.id %}">{{ rent.game.owner }}</a>
-                        <br>
-                        <button onclick="window.location.href='{% url 'main:returnGame' rent.id %}'" type="button" class="btn btn-dark"><a>Return Game</a></button>
+    <ul class="list-inline mx-auto justify-content-center">
+    {% for rent in rentedGames %}
+        {% if not rent.returned %}
+            <li class="text-white">
+                <a href="{% url 'main:game' rent.game.id %}">{{ rent.game.name }}</a>
+                <p>by 
+                    <a href="{% url 'users:profile' rent.game.owner.id %}">{{ rent.game.owner }}</a>
+                    <br>
+                    <button onclick="window.location.href='{% url 'main:returnGame' rent.id %}'" type="button" class="btn btn-dark"><a>Return Game</a></button>
 
-                    </p>
-                </li>
-            <br>
-            {% endif %}
-        {% empty %}
-            <li class="list-inline-item text-white">You didn't rent any games yet.</li>
-        {% endfor %}
-        </ul>
+                </p>
+            </li>
+        <br>
+        {% endif %}
+    {% empty %}
+        <li class="list-inline-item text-white">You didn't rent any games yet.</li>
+    {% endfor %}
+    </ul>
 </div>
 
 
-    {% endif %}
+{% endif %}
 {% endblock content %}
