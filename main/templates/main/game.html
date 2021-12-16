@@ -12,7 +12,11 @@
         <p class = "text-white text-center">The game is available!</p>
         {% if request.user != game.owner %}
 <div class="col text-center">
-<button type="button" class="btn btn-dark"><a href="{% url 'main:rentGame' game.id request.user.id %}">Rent now!</a></button>
+<button onclick="window.location.href='{% url 'main:rentGame' game.id request.user.id %}'" type="button" class="btn btn-dark"><a>Rent now!</a></button>
+
+
+
+
 
     </div>
 

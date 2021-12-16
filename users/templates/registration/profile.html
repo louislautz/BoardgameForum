@@ -5,22 +5,27 @@
     <h1 class="text-white text-capitalize text-center">{{ user }}'s Games:</h1>
     <br><br>
 
-    <ul class="mx-auto content-center">
-    {% for game in games %} 
-        <li class="list-item text-white">
-            <a href="{% url 'main:game' game.id %}">{{ game.name }}</a>
-            <p>{{ game.description|linebreaks }}<br></p>
-        </li> </ul>
-    {% empty %}
-        <p class="text-center text-white">You don't have any games yet.</p>
-    {% endfor %}
-
 
 
 <div class="text-center">
-<button type="button" class="btn btn-dark"><a href="{% url 'main:new_game' user.id%} text-center">Add new game</a></button>
+        <ul class="list-inline mx-auto justify-content-center">
+    {% for game in games %} 
+        <li class ="text-white">
+            <a href="{% url 'main:game' game.id %}">{{ game.name }}</a>
+            <p>{{ game.description|linebreaks }}<br></p>
+        </li>
+    {% empty %}
+            </ul>
+        <p class="text-center text-white">You don't have any games yet.</p>
+    {% endfor %}
+</div>
+
+
+<div class="text-center">
+<button onclick="window.location.href='{% url 'main:new_game' user.id%}'" type="button" class="btn btn-dark"><a>Add new game</a></button>
 </div>
     {% if user == request.user %}
+
 
 
 
@@ -37,7 +42,9 @@
                     <a href="{% url 'main:game' rent.game.id %}">{{ rent.game.name }}</a>
                     <p>by 
                         <a href="{% url 'users:profile' rent.game.owner.id %}">{{ rent.game.owner }}</a>
-                        <br><a href="{% url 'main:returnGame' rent.id %}">Return Game</a>
+                        <br>
+                        <button onclick="window.location.href='{% url 'main:returnGame' rent.id %}'" type="button" class="btn btn-dark"><a>Return Game</a></button>
+
                     </p>
                 </li>
             <br>
