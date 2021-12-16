@@ -10,16 +10,16 @@
         <li class="list-item text-white">
             <a href="{% url 'main:game' game.id %}">{{ game.name }}</a>
             <p>{{ game.description|linebreaks }}<br></p>
-        </li>
+        </li> </ul>
     {% empty %}
-        <li class="list-inline-item text-white">You don't have any games yet.</li>
+        <p class="text-center text-white">You don't have any games yet.</p>
     {% endfor %}
 
-<div class="text-left">
-<button type="button" class="btn btn-dark"><a href="{% url 'main:new_game' user.id%}">Add new game</a></button>
 
-    </div>
-    </ul>
+
+<div class="text-center">
+<button type="button" class="btn btn-dark"><a href="{% url 'main:new_game' user.id%} text-center">Add new game</a></button>
+</div>
     {% if user == request.user %}
 
 
@@ -27,22 +27,26 @@
 
 <br><br>
 
-        <p class="text-white">Rented Games:</p>
-        <ul>
+
+<p class="text-white text-center">Rented Games:</p>
+<div class="text-center">
+        <ul class="list-inline mx-auto justify-content-center">
         {% for rent in rentedGames %}
             {% if not rent.returned %}
-                <li class="list-inline-item text-white">
+                <li class="text-white">
                     <a href="{% url 'main:game' rent.game.id %}">{{ rent.game.name }}</a>
                     <p>by 
                         <a href="{% url 'users:profile' rent.game.owner.id %}">{{ rent.game.owner }}</a>
                         <br><a href="{% url 'main:returnGame' rent.id %}">Return Game</a>
                     </p>
                 </li>
+            <br>
             {% endif %}
         {% empty %}
-            <li class="list-inline-item text-white">You didnt rent any games yet.</li>
+            <li class="list-inline-item text-white">You didn't rent any games yet.</li>
         {% endfor %}
         </ul>
+</div>
 
 
     {% endif %}
